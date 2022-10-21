@@ -1,4 +1,4 @@
-import 'package:flow_project/pages/home/home.dart';
+import 'package:flow_project/routes/app_router.gr.dart';
 import 'package:flutter/material.dart';
 
 import 'flutter_flow/internationalization.dart';
@@ -14,15 +14,28 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      localizationsDelegates: const [
-        FFLocalizationsDelegate(),
-      ],
+    final _appRouter = AppRouter();
+
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter flow base app',
+      routerDelegate: _appRouter.delegate(),
+      routeInformationParser: _appRouter.defaultRouteParser(),
+      localizationsDelegates: const [FFLocalizationsDelegate()],
       theme: ThemeData(brightness: Brightness.light),
       darkTheme: ThemeData(brightness: Brightness.dark),
       themeMode: FlutterFlowTheme.themeMode,
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
+
+    // return MaterialApp(
+    //   title: 'Flutter Demo',
+    //   localizationsDelegates: const [
+    //     FFLocalizationsDelegate(),
+    //   ],
+    //   theme: ThemeData(brightness: Brightness.light),
+    //   darkTheme: ThemeData(brightness: Brightness.dark),
+    //   themeMode: FlutterFlowTheme.themeMode,
+    //   home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    // );
   }
 }
