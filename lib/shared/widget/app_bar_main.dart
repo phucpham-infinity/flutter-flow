@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
+import '../../flutter_flow/flutter_flow_theme.dart';
 
 class AppBarMain extends StatelessWidget implements PreferredSizeWidget {
   const AppBarMain({

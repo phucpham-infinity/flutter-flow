@@ -6,3 +6,17 @@ gen: ## Generates the assets
 run: ## Runs the mobile application in dev
 	@echo "╠ Running the app"
 	@flutter run
+
+purge: ## Purges the Flutter
+	@flutter clean
+	@flutter pub get
+
+run_dev_mobile: ## Runs the mobile application in dev
+	@echo "╠ Running the app"
+	@flutter run -t lib/main_development.dart
+
+clean: ## Cleans the environment
+	@echo "╠ Cleaning the project..."
+	@rm -rf pubspec.lock
+	@flutter clean
+	@flutter pub get

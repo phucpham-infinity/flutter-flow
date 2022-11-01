@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flow_project/components/app_bar_main.dart';
+import 'package:flow_project/shared/widget/app_bar_main.dart';
 import 'package:flow_project/routes/app_router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
