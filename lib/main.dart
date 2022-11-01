@@ -14,28 +14,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final _appRouter = AppRouter();
-
+    final appRouter = AppRouter();
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Flutter flow base app',
-      routerDelegate: _appRouter.delegate(),
-      routeInformationParser: _appRouter.defaultRouteParser(),
+      routerDelegate: appRouter.delegate(),
+      routeInformationParser: appRouter.defaultRouteParser(),
       localizationsDelegates: const [FFLocalizationsDelegate()],
       theme: ThemeData(brightness: Brightness.light),
       darkTheme: ThemeData(brightness: Brightness.dark),
       themeMode: FlutterFlowTheme.themeMode,
     );
-
-    // return MaterialApp(
-    //   title: 'Flutter Demo',
-    //   localizationsDelegates: const [
-    //     FFLocalizationsDelegate(),
-    //   ],
-    //   theme: ThemeData(brightness: Brightness.light),
-    //   darkTheme: ThemeData(brightness: Brightness.dark),
-    //   themeMode: FlutterFlowTheme.themeMode,
-    //   home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    // );
   }
 }
