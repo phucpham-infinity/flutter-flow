@@ -1,3 +1,8 @@
 {
-  "hello_text": "Xin chao 2023!"
+  "hello_text": "Xin chao 2023!",
+  "email_hint": "Nhập email của bạn",
+  "new_user": "Người dùng mới",
+  "password_hint": "Nhập mật khẩu của bạn",
+  "sign_in": "Đăng nhập",
+  "sign_up": "Đăng xuất"
 }

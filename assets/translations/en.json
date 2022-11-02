@@ -1,3 +1,8 @@
 {
-  "hello_text": "Hello 2023"
+  "hello_text": "hello 2023",
+  "sign_in": "Sign-in",
+  "email_hint": "Enter your email",
+  "password_hint": "Enter your password",
+  "new_user": "New user",
+  "sign_up": "Sign-up"
 }

@@ -29,6 +29,5 @@ clean: ## Cleans the environment
 	@flutter pub get
 
 purge: ## Purges the Flutter 
-	@pod deintegrate
 	@flutter clean
 	@flutter pub get

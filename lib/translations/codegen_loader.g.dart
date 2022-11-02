@@ -15,10 +15,20 @@ class CodegenLoader extends AssetLoader{
   }
 
   static const Map<String,dynamic> en = {
-  "hello_text": "Hello 2023"
+  "hello_text": "hello 2023",
+  "sign_in": "Sign-in",
+  "email_hint": "Enter your email",
+  "password_hint": "Enter your password",
+  "new_user": "New user",
+  "sign_up": "Sign-up"
 };
 static const Map<String,dynamic> vi = {
-  "hello_text": "Xin chao 2023!"
+  "hello_text": "Xin chao 2023!",
+  "email_hint": "Nhập email của bạn",
+  "new_user": "Người dùng mới",
+  "password_hint": "Nhập mật khẩu của bạn",
+  "sign_in": "Đăng nhập",
+  "sign_up": "Đăng xuất"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en, "vi": vi};
 }

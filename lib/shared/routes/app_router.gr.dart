@@ -13,6 +13,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i5;
 import 'package:flutter/material.dart' as _i6;
+import 'package:flutter/widgets.dart' as _i7;
 
 import '../../app/widget/app_start_page.dart' as _i1;
 import '../../feature/auth/widget/sign_in_page.dart' as _i3;
@@ -38,9 +39,11 @@ class AppRouter extends _i5.RootStackRouter {
       );
     },
     SignInRoute.name: (routeData) {
+      final args = routeData.argsAs<SignInRouteArgs>(
+          orElse: () => const SignInRouteArgs());
       return _i5.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i3.SignInPage(),
+        child: _i3.SignInPage(key: args.key),
       );
     },
     SignUpRoute.name: (routeData) {
@@ -98,14 +101,26 @@ class HomeRoute extends _i5.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.SignInPage]
-class SignInRoute extends _i5.PageRouteInfo<void> {
-  const SignInRoute()
+class SignInRoute extends _i5.PageRouteInfo<SignInRouteArgs> {
+  SignInRoute({_i7.Key? key})
       : super(
           SignInRoute.name,
           path: '/signIn',
+          args: SignInRouteArgs(key: key),
         );
 
   static const String name = 'SignInRoute';
+}
+
+class SignInRouteArgs {
+  const SignInRouteArgs({this.key});
+
+  final _i7.Key? key;
+
+  @override
+  String toString() {
+    return 'SignInRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for
