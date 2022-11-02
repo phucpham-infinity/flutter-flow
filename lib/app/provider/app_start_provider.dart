@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 final appStartProvider =
     StateNotifierProvider<AppStartNotifier, AppStartState>((ref) {
   late AppStartState appStartState;
-  appStartState = const AppStartState.initial();
+  appStartState = const AppStartState.authenticated();
 
   return AppStartNotifier(appStartState);
 });

@@ -1,6 +1,6 @@
 import 'package:flow_project/app/provider/app_start_provider.dart';
+import 'package:flow_project/feature/auth/widget/sign_in_page.dart';
 import 'package:flow_project/feature/home/widget/home_page.dart';
-import 'package:flow_project/pages/auth/sign_in_page.dart';
 import 'package:flow_project/shared/widget/connection_unavailable_widget.dart';
 import 'package:flow_project/shared/widget/loading_widget.dart';
 import 'package:flutter/material.dart';

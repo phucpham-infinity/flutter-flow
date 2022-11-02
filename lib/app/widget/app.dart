@@ -1,7 +1,7 @@
 import 'package:flow_project/flutter_flow/flutter_flow_theme.dart';
-import 'package:flow_project/flutter_flow/internationalization.dart';
-import 'package:flow_project/routes/app_router.gr.dart';
+import 'package:flow_project/shared/routes/app_router.gr.dart';
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -16,10 +16,12 @@ class App extends StatelessWidget {
       title: 'Flutter Base App 2022',
       routerDelegate: appRouter.delegate(),
       routeInformationParser: appRouter.defaultRouteParser(),
-      localizationsDelegates: const [FFLocalizationsDelegate()],
       theme: ThemeData(brightness: Brightness.light),
       darkTheme: ThemeData(brightness: Brightness.dark),
       themeMode: FlutterFlowTheme.themeMode,
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
     );
   }
 }
