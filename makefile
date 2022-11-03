@@ -13,7 +13,7 @@ purge: ## Purges the Flutter
 
 run_dev_mobile: ## Runs the mobile application in dev
 	@echo "╠ Running the app"
-	@flutter run -t lib/main_development.dart
+	@flutter run --target lib/main_development.dart
 
 clean: ## Cleans the environment
 	@echo "╠ Cleaning the project..."

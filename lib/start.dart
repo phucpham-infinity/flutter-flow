@@ -24,7 +24,7 @@ void start() async {
     overrides: [
       platformTypeProvider.overrideWithValue(platformType),
     ],
-    observers: [Logger()],
+    // observers: [Logger()],
     child: const MyApp(),
   ));
 }
