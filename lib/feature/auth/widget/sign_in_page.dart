@@ -5,6 +5,7 @@ import 'package:flow_project/translations/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:another_flushbar/flushbar.dart';
 
 class SignInPage extends ConsumerWidget {
   final _emailController = TextEditingController();
@@ -38,7 +39,7 @@ class SignInPage extends ConsumerWidget {
                           decoration: InputDecoration(
                               labelText: LocaleKeys.password_hint.tr()),
                           controller: _passwordController,
-                          obscureText: true,
+                          obscureText: false,
                         ),
                         Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,

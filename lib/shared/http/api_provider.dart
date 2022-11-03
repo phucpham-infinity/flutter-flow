@@ -90,6 +90,7 @@ class ApiProvider {
       final headers = {
         'accept': '*/*',
         'Content-Type': content,
+        'apikey': dotenv.env['API_KEY'],
       };
       final _appToken = await _tokenRepository.fetchToken();
       if (_appToken != null) {
@@ -184,11 +185,13 @@ class ApiProvider {
     final headers = {
       'accept': '*/*',
       'Content-Type': content,
+      'apikey': dotenv.env['API_KEY'],
     };
 
     final _appToken = await _tokenRepository.fetchToken();
+
     if (_appToken != null) {
-      headers['Authorization'] = 'Bearer ${_appToken}';
+      headers['Authorization'] = 'Bearer ${_appToken.access_token} 111';
     }
 
     try {
@@ -210,7 +213,16 @@ class ApiProvider {
         if (response.statusCode! == 404) {
           return const APIResponse.error(AppException.connectivity());
         } else if (response.statusCode! == 401) {
-          return APIResponse.error(AppException.unauthorized());
+          if (response.data['msg'] != null) {
+            final mess = response.data['msg'];
+            return APIResponse.error(
+              AppException.errorWithMessage(mess),
+            );
+          } else {
+            return const APIResponse.error(
+              AppException.unauthorized(),
+            );
+          }
         } else if (response.statusCode! == 502) {
           return const APIResponse.error(AppException.error());
         } else {

@@ -12,7 +12,7 @@ String tokenToJson(Token data) => json.encode(data.toJson());
 @freezed
 class Token with _$Token {
   const factory Token({
-    required String token,
+    required String access_token,
   }) = _Token;
 
   factory Token.fromJson(Map<String, dynamic> json) => _$TokenFromJson(json);

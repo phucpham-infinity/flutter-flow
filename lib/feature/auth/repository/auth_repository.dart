@@ -11,6 +11,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 abstract class AuthRepositoryProtocol {
   Future<AuthState> login(String email, String password);
   Future<AuthState> signUp(String name, String email, String password);
+  Future<void> logOut();
 }
 
 final authRepositoryProvider = Provider((ref) => AuthRepository(ref.read));
@@ -35,20 +36,23 @@ class AuthRepository implements AuthRepositoryProtocol {
       'email': email,
       'password': password,
     };
-    print(params);
-    final loginResponse = await _api.post('login', jsonEncode(params));
+    final loginResponse =
+        await _api.post('token?grant_type=password', jsonEncode(params));
 
-    return loginResponse.when(success: (success) async {
-      final tokenRepository = _reader(tokenRepositoryProvider);
+    return loginResponse.when(
+      success: (success) async {
+        final tokenRepository = _reader(tokenRepositoryProvider);
 
-      final token = Token.fromJson(success);
+        final token = Token.fromJson(success);
 
-      await tokenRepository.saveToken(token);
+        await tokenRepository.saveToken(token);
 
-      return const AuthState.loggedIn();
-    }, error: (error) {
-      return AuthState.error(error);
-    });
+        return const AuthState.loggedIn();
+      },
+      error: (error) {
+        return AuthState.error(error);
+      },
+    );
   }
 
   @override
@@ -69,7 +73,7 @@ class AuthRepository implements AuthRepositoryProtocol {
     final loginResponse = await _api.post('sign_up', jsonEncode(params));
 
     return loginResponse.when(success: (success) async {
-      final tokenRepository = _reader(tokenRepositoryProvider);
+      final TokenRepository tokenRepository = _reader(tokenRepositoryProvider);
 
       final token = Token.fromJson(success);
 
@@ -79,5 +83,11 @@ class AuthRepository implements AuthRepositoryProtocol {
     }, error: (error) {
       return AuthState.error(error);
     });
+  }
+
+  @override
+  Future<void> logOut() async {
+    final TokenRepository tokenRepository = _reader(tokenRepositoryProvider);
+    await tokenRepository.remove();
   }
 }

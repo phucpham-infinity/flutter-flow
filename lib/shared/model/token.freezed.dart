@@ -20,7 +20,7 @@ Token _$TokenFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Token {
-  String get token => throw _privateConstructorUsedError;
+  String get access_token => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -32,7 +32,7 @@ abstract class $TokenCopyWith<$Res> {
   factory $TokenCopyWith(Token value, $Res Function(Token) then) =
       _$TokenCopyWithImpl<$Res, Token>;
   @useResult
-  $Res call({String token});
+  $Res call({String access_token});
 }
 
 /// @nodoc
@@ -48,12 +48,12 @@ class _$TokenCopyWithImpl<$Res, $Val extends Token>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? token = null,
+    Object? access_token = null,
   }) {
     return _then(_value.copyWith(
-      token: null == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
+      access_token: null == access_token
+          ? _value.access_token
+          : access_token // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -65,7 +65,7 @@ abstract class _$$_TokenCopyWith<$Res> implements $TokenCopyWith<$Res> {
       __$$_TokenCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String token});
+  $Res call({String access_token});
 }
 
 /// @nodoc
@@ -77,12 +77,12 @@ class __$$_TokenCopyWithImpl<$Res> extends _$TokenCopyWithImpl<$Res, _$_Token>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? token = null,
+    Object? access_token = null,
   }) {
     return _then(_$_Token(
-      token: null == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
+      access_token: null == access_token
+          ? _value.access_token
+          : access_token // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -91,17 +91,17 @@ class __$$_TokenCopyWithImpl<$Res> extends _$TokenCopyWithImpl<$Res, _$_Token>
 /// @nodoc
 @JsonSerializable()
 class _$_Token implements _Token {
-  const _$_Token({required this.token});
+  const _$_Token({required this.access_token});
 
   factory _$_Token.fromJson(Map<String, dynamic> json) =>
       _$$_TokenFromJson(json);
 
   @override
-  final String token;
+  final String access_token;
 
   @override
   String toString() {
-    return 'Token(token: $token)';
+    return 'Token(access_token: $access_token)';
   }
 
   @override
@@ -109,12 +109,13 @@ class _$_Token implements _Token {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Token &&
-            (identical(other.token, token) || other.token == token));
+            (identical(other.access_token, access_token) ||
+                other.access_token == access_token));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, token);
+  int get hashCode => Object.hash(runtimeType, access_token);
 
   @JsonKey(ignore: true)
   @override
@@ -131,12 +132,12 @@ class _$_Token implements _Token {
 }
 
 abstract class _Token implements Token {
-  const factory _Token({required final String token}) = _$_Token;
+  const factory _Token({required final String access_token}) = _$_Token;
 
   factory _Token.fromJson(Map<String, dynamic> json) = _$_Token.fromJson;
 
   @override
-  String get token;
+  String get access_token;
   @override
   @JsonKey(ignore: true)
   _$$_TokenCopyWith<_$_Token> get copyWith =>
