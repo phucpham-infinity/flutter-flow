@@ -21,6 +21,6 @@ class AuthProvider extends StateNotifier<AuthState> {
   }
 
   Future<void> logOut() async {
-    await _loginRepository.logOut();
+    state = await _loginRepository.logOut();
   }
 }

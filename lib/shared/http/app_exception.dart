@@ -8,7 +8,7 @@ class AppException with _$AppException {
 
   const factory AppException.unauthorized() = AppExceptionUnauthorized;
 
-  const factory AppException.errorWithMessage(dynamic message) =
+  const factory AppException.errorWithMessage(String message) =
       _AppExceptionErrorMessage;
   const factory AppException.error() = _AppExceptionError;
 }

@@ -1,4 +1,5 @@
 import 'package:flow_project/app/provider/app_start_provider.dart';
+import 'package:flow_project/app/widget/app_start_alert.dart';
 import 'package:flow_project/feature/auth/widget/sign_in_page.dart';
 import 'package:flow_project/feature/home/widget/home_page.dart';
 import 'package:flow_project/shared/widget/connection_unavailable_widget.dart';
@@ -13,10 +14,12 @@ class AppStartPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(appStartProvider);
 
+    AppStartAlert(context, ref);
+
     return state.maybeWhen(
       initial: () => const LoadingWidget(),
       authenticated: () => const HomePage(),
-      unauthenticated: () => SignInPage(),
+      unauthenticated: (message) => SignInPage(),
       internetUnAvailable: () => const ConnectionUnavailableWidget(),
       orElse: () => const LoadingWidget(),
     );

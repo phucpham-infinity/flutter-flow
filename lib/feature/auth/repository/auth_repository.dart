@@ -4,14 +4,16 @@ import 'package:flow_project/feature/auth/model/auth_state.dart';
 import 'package:flow_project/shared/http/api_provider.dart';
 import 'package:flow_project/shared/http/app_exception.dart';
 import 'package:flow_project/shared/model/token.dart';
+import 'package:flow_project/shared/model/user/user.dart';
 import 'package:flow_project/shared/repository/token_repository.dart';
+import 'package:flow_project/shared/repository/user_repository.dart';
 import 'package:flow_project/shared/util/validator.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 abstract class AuthRepositoryProtocol {
   Future<AuthState> login(String email, String password);
   Future<AuthState> signUp(String name, String email, String password);
-  Future<void> logOut();
+  Future<AuthState> logOut();
 }
 
 final authRepositoryProvider = Provider((ref) => AuthRepository(ref.read));
@@ -42,14 +44,18 @@ class AuthRepository implements AuthRepositoryProtocol {
     return loginResponse.when(
       success: (success) async {
         final tokenRepository = _reader(tokenRepositoryProvider);
+        final UserRepository userRepository = _reader(userRepositoryProvider);
 
         final token = Token.fromJson(success);
+        final user = User.fromJson(success['user']);
 
         await tokenRepository.saveToken(token);
+        await userRepository.saveUser(user);
 
         return const AuthState.loggedIn();
       },
       error: (error) {
+        print(error);
         return AuthState.error(error);
       },
     );
@@ -86,8 +92,12 @@ class AuthRepository implements AuthRepositoryProtocol {
   }
 
   @override
-  Future<void> logOut() async {
+  Future<AuthState> logOut() async {
     final TokenRepository tokenRepository = _reader(tokenRepositoryProvider);
+    final UserRepository userRepository = _reader(userRepositoryProvider);
+
     await tokenRepository.remove();
+    await userRepository.remove();
+    return const AuthState.loggedOut();
   }
 }

@@ -19,7 +19,7 @@ mixin _$AppStartState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() unauthenticated,
+    required TResult Function(String? message) unauthenticated,
     required TResult Function() internetUnAvailable,
     required TResult Function() authenticated,
   }) =>
@@ -27,7 +27,7 @@ mixin _$AppStartState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? unauthenticated,
+    TResult? Function(String? message)? unauthenticated,
     TResult? Function()? internetUnAvailable,
     TResult? Function()? authenticated,
   }) =>
@@ -35,7 +35,7 @@ mixin _$AppStartState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? unauthenticated,
+    TResult Function(String? message)? unauthenticated,
     TResult Function()? internetUnAvailable,
     TResult Function()? authenticated,
     required TResult orElse(),
@@ -44,7 +44,7 @@ mixin _$AppStartState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Unauthenticated value) unauthenticated,
+    required TResult Function(_Unauthenticated value) unauthenticated,
     required TResult Function(_InternetUnAvailable value) internetUnAvailable,
     required TResult Function(AppAuthenticated value) authenticated,
   }) =>
@@ -52,7 +52,7 @@ mixin _$AppStartState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Unauthenticated value)? unauthenticated,
+    TResult? Function(_Unauthenticated value)? unauthenticated,
     TResult? Function(_InternetUnAvailable value)? internetUnAvailable,
     TResult? Function(AppAuthenticated value)? authenticated,
   }) =>
@@ -60,7 +60,7 @@ mixin _$AppStartState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(_Unauthenticated value)? unauthenticated,
     TResult Function(_InternetUnAvailable value)? internetUnAvailable,
     TResult Function(AppAuthenticated value)? authenticated,
     required TResult orElse(),
@@ -124,7 +124,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() unauthenticated,
+    required TResult Function(String? message) unauthenticated,
     required TResult Function() internetUnAvailable,
     required TResult Function() authenticated,
   }) {
@@ -135,7 +135,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? unauthenticated,
+    TResult? Function(String? message)? unauthenticated,
     TResult? Function()? internetUnAvailable,
     TResult? Function()? authenticated,
   }) {
@@ -146,7 +146,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? unauthenticated,
+    TResult Function(String? message)? unauthenticated,
     TResult Function()? internetUnAvailable,
     TResult Function()? authenticated,
     required TResult orElse(),
@@ -161,7 +161,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Unauthenticated value) unauthenticated,
+    required TResult Function(_Unauthenticated value) unauthenticated,
     required TResult Function(_InternetUnAvailable value) internetUnAvailable,
     required TResult Function(AppAuthenticated value) authenticated,
   }) {
@@ -172,7 +172,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Unauthenticated value)? unauthenticated,
+    TResult? Function(_Unauthenticated value)? unauthenticated,
     TResult? Function(_InternetUnAvailable value)? internetUnAvailable,
     TResult? Function(AppAuthenticated value)? authenticated,
   }) {
@@ -183,7 +183,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(_Unauthenticated value)? unauthenticated,
     TResult Function(_InternetUnAvailable value)? internetUnAvailable,
     TResult Function(AppAuthenticated value)? authenticated,
     required TResult orElse(),
@@ -200,73 +200,99 @@ abstract class _Initial implements AppStartState {
 }
 
 /// @nodoc
-abstract class _$$UnauthenticatedCopyWith<$Res> {
-  factory _$$UnauthenticatedCopyWith(
-          _$Unauthenticated value, $Res Function(_$Unauthenticated) then) =
-      __$$UnauthenticatedCopyWithImpl<$Res>;
+abstract class _$$_UnauthenticatedCopyWith<$Res> {
+  factory _$$_UnauthenticatedCopyWith(
+          _$_Unauthenticated value, $Res Function(_$_Unauthenticated) then) =
+      __$$_UnauthenticatedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String? message});
 }
 
 /// @nodoc
-class __$$UnauthenticatedCopyWithImpl<$Res>
-    extends _$AppStartStateCopyWithImpl<$Res, _$Unauthenticated>
-    implements _$$UnauthenticatedCopyWith<$Res> {
-  __$$UnauthenticatedCopyWithImpl(
-      _$Unauthenticated _value, $Res Function(_$Unauthenticated) _then)
+class __$$_UnauthenticatedCopyWithImpl<$Res>
+    extends _$AppStartStateCopyWithImpl<$Res, _$_Unauthenticated>
+    implements _$$_UnauthenticatedCopyWith<$Res> {
+  __$$_UnauthenticatedCopyWithImpl(
+      _$_Unauthenticated _value, $Res Function(_$_Unauthenticated) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(_$_Unauthenticated(
+      freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$Unauthenticated implements Unauthenticated {
-  const _$Unauthenticated();
+class _$_Unauthenticated implements _Unauthenticated {
+  const _$_Unauthenticated(this.message);
+
+  @override
+  final String? message;
 
   @override
   String toString() {
-    return 'AppStartState.unauthenticated()';
+    return 'AppStartState.unauthenticated(message: $message)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Unauthenticated);
+        (other.runtimeType == runtimeType &&
+            other is _$_Unauthenticated &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_UnauthenticatedCopyWith<_$_Unauthenticated> get copyWith =>
+      __$$_UnauthenticatedCopyWithImpl<_$_Unauthenticated>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() unauthenticated,
+    required TResult Function(String? message) unauthenticated,
     required TResult Function() internetUnAvailable,
     required TResult Function() authenticated,
   }) {
-    return unauthenticated();
+    return unauthenticated(message);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? unauthenticated,
+    TResult? Function(String? message)? unauthenticated,
     TResult? Function()? internetUnAvailable,
     TResult? Function()? authenticated,
   }) {
-    return unauthenticated?.call();
+    return unauthenticated?.call(message);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? unauthenticated,
+    TResult Function(String? message)? unauthenticated,
     TResult Function()? internetUnAvailable,
     TResult Function()? authenticated,
     required TResult orElse(),
   }) {
     if (unauthenticated != null) {
-      return unauthenticated();
+      return unauthenticated(message);
     }
     return orElse();
   }
@@ -275,7 +301,7 @@ class _$Unauthenticated implements Unauthenticated {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Unauthenticated value) unauthenticated,
+    required TResult Function(_Unauthenticated value) unauthenticated,
     required TResult Function(_InternetUnAvailable value) internetUnAvailable,
     required TResult Function(AppAuthenticated value) authenticated,
   }) {
@@ -286,7 +312,7 @@ class _$Unauthenticated implements Unauthenticated {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Unauthenticated value)? unauthenticated,
+    TResult? Function(_Unauthenticated value)? unauthenticated,
     TResult? Function(_InternetUnAvailable value)? internetUnAvailable,
     TResult? Function(AppAuthenticated value)? authenticated,
   }) {
@@ -297,7 +323,7 @@ class _$Unauthenticated implements Unauthenticated {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(_Unauthenticated value)? unauthenticated,
     TResult Function(_InternetUnAvailable value)? internetUnAvailable,
     TResult Function(AppAuthenticated value)? authenticated,
     required TResult orElse(),
@@ -309,8 +335,13 @@ class _$Unauthenticated implements Unauthenticated {
   }
 }
 
-abstract class Unauthenticated implements AppStartState {
-  const factory Unauthenticated() = _$Unauthenticated;
+abstract class _Unauthenticated implements AppStartState {
+  const factory _Unauthenticated(final String? message) = _$_Unauthenticated;
+
+  String? get message;
+  @JsonKey(ignore: true)
+  _$$_UnauthenticatedCopyWith<_$_Unauthenticated> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -352,7 +383,7 @@ class _$_InternetUnAvailable implements _InternetUnAvailable {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() unauthenticated,
+    required TResult Function(String? message) unauthenticated,
     required TResult Function() internetUnAvailable,
     required TResult Function() authenticated,
   }) {
@@ -363,7 +394,7 @@ class _$_InternetUnAvailable implements _InternetUnAvailable {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? unauthenticated,
+    TResult? Function(String? message)? unauthenticated,
     TResult? Function()? internetUnAvailable,
     TResult? Function()? authenticated,
   }) {
@@ -374,7 +405,7 @@ class _$_InternetUnAvailable implements _InternetUnAvailable {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? unauthenticated,
+    TResult Function(String? message)? unauthenticated,
     TResult Function()? internetUnAvailable,
     TResult Function()? authenticated,
     required TResult orElse(),
@@ -389,7 +420,7 @@ class _$_InternetUnAvailable implements _InternetUnAvailable {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Unauthenticated value) unauthenticated,
+    required TResult Function(_Unauthenticated value) unauthenticated,
     required TResult Function(_InternetUnAvailable value) internetUnAvailable,
     required TResult Function(AppAuthenticated value) authenticated,
   }) {
@@ -400,7 +431,7 @@ class _$_InternetUnAvailable implements _InternetUnAvailable {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Unauthenticated value)? unauthenticated,
+    TResult? Function(_Unauthenticated value)? unauthenticated,
     TResult? Function(_InternetUnAvailable value)? internetUnAvailable,
     TResult? Function(AppAuthenticated value)? authenticated,
   }) {
@@ -411,7 +442,7 @@ class _$_InternetUnAvailable implements _InternetUnAvailable {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(_Unauthenticated value)? unauthenticated,
     TResult Function(_InternetUnAvailable value)? internetUnAvailable,
     TResult Function(AppAuthenticated value)? authenticated,
     required TResult orElse(),
@@ -466,7 +497,7 @@ class _$AppAuthenticated implements AppAuthenticated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() unauthenticated,
+    required TResult Function(String? message) unauthenticated,
     required TResult Function() internetUnAvailable,
     required TResult Function() authenticated,
   }) {
@@ -477,7 +508,7 @@ class _$AppAuthenticated implements AppAuthenticated {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? unauthenticated,
+    TResult? Function(String? message)? unauthenticated,
     TResult? Function()? internetUnAvailable,
     TResult? Function()? authenticated,
   }) {
@@ -488,7 +519,7 @@ class _$AppAuthenticated implements AppAuthenticated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? unauthenticated,
+    TResult Function(String? message)? unauthenticated,
     TResult Function()? internetUnAvailable,
     TResult Function()? authenticated,
     required TResult orElse(),
@@ -503,7 +534,7 @@ class _$AppAuthenticated implements AppAuthenticated {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(Unauthenticated value) unauthenticated,
+    required TResult Function(_Unauthenticated value) unauthenticated,
     required TResult Function(_InternetUnAvailable value) internetUnAvailable,
     required TResult Function(AppAuthenticated value) authenticated,
   }) {
@@ -514,7 +545,7 @@ class _$AppAuthenticated implements AppAuthenticated {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(Unauthenticated value)? unauthenticated,
+    TResult? Function(_Unauthenticated value)? unauthenticated,
     TResult? Function(_InternetUnAvailable value)? internetUnAvailable,
     TResult? Function(AppAuthenticated value)? authenticated,
   }) {
@@ -525,7 +556,7 @@ class _$AppAuthenticated implements AppAuthenticated {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(Unauthenticated value)? unauthenticated,
+    TResult Function(_Unauthenticated value)? unauthenticated,
     TResult Function(_InternetUnAvailable value)? internetUnAvailable,
     TResult Function(AppAuthenticated value)? authenticated,
     required TResult orElse(),

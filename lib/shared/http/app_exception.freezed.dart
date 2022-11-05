@@ -20,7 +20,7 @@ mixin _$AppException {
   TResult when<TResult extends Object?>({
     required TResult Function() connectivity,
     required TResult Function() unauthorized,
-    required TResult Function(dynamic message) errorWithMessage,
+    required TResult Function(String message) errorWithMessage,
     required TResult Function() error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$AppException {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? connectivity,
     TResult? Function()? unauthorized,
-    TResult? Function(dynamic message)? errorWithMessage,
+    TResult? Function(String message)? errorWithMessage,
     TResult? Function()? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$AppException {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? connectivity,
     TResult Function()? unauthorized,
-    TResult Function(dynamic message)? errorWithMessage,
+    TResult Function(String message)? errorWithMessage,
     TResult Function()? error,
     required TResult orElse(),
   }) =>
@@ -127,7 +127,7 @@ class _$AppExceptionConnectivity implements AppExceptionConnectivity {
   TResult when<TResult extends Object?>({
     required TResult Function() connectivity,
     required TResult Function() unauthorized,
-    required TResult Function(dynamic message) errorWithMessage,
+    required TResult Function(String message) errorWithMessage,
     required TResult Function() error,
   }) {
     return connectivity();
@@ -138,7 +138,7 @@ class _$AppExceptionConnectivity implements AppExceptionConnectivity {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? connectivity,
     TResult? Function()? unauthorized,
-    TResult? Function(dynamic message)? errorWithMessage,
+    TResult? Function(String message)? errorWithMessage,
     TResult? Function()? error,
   }) {
     return connectivity?.call();
@@ -149,7 +149,7 @@ class _$AppExceptionConnectivity implements AppExceptionConnectivity {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? connectivity,
     TResult Function()? unauthorized,
-    TResult Function(dynamic message)? errorWithMessage,
+    TResult Function(String message)? errorWithMessage,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -242,7 +242,7 @@ class _$AppExceptionUnauthorized implements AppExceptionUnauthorized {
   TResult when<TResult extends Object?>({
     required TResult Function() connectivity,
     required TResult Function() unauthorized,
-    required TResult Function(dynamic message) errorWithMessage,
+    required TResult Function(String message) errorWithMessage,
     required TResult Function() error,
   }) {
     return unauthorized();
@@ -253,7 +253,7 @@ class _$AppExceptionUnauthorized implements AppExceptionUnauthorized {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? connectivity,
     TResult? Function()? unauthorized,
-    TResult? Function(dynamic message)? errorWithMessage,
+    TResult? Function(String message)? errorWithMessage,
     TResult? Function()? error,
   }) {
     return unauthorized?.call();
@@ -264,7 +264,7 @@ class _$AppExceptionUnauthorized implements AppExceptionUnauthorized {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? connectivity,
     TResult Function()? unauthorized,
-    TResult Function(dynamic message)? errorWithMessage,
+    TResult Function(String message)? errorWithMessage,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -323,7 +323,7 @@ abstract class _$$_AppExceptionErrorMessageCopyWith<$Res> {
           $Res Function(_$_AppExceptionErrorMessage) then) =
       __$$_AppExceptionErrorMessageCopyWithImpl<$Res>;
   @useResult
-  $Res call({dynamic message});
+  $Res call({String message});
 }
 
 /// @nodoc
@@ -343,7 +343,7 @@ class __$$_AppExceptionErrorMessageCopyWithImpl<$Res>
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String,
     ));
   }
 }
@@ -354,7 +354,7 @@ class _$_AppExceptionErrorMessage implements _AppExceptionErrorMessage {
   const _$_AppExceptionErrorMessage(this.message);
 
   @override
-  final dynamic message;
+  final String message;
 
   @override
   String toString() {
@@ -366,12 +366,11 @@ class _$_AppExceptionErrorMessage implements _AppExceptionErrorMessage {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AppExceptionErrorMessage &&
-            const DeepCollectionEquality().equals(other.message, message));
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
+  int get hashCode => Object.hash(runtimeType, message);
 
   @JsonKey(ignore: true)
   @override
@@ -385,7 +384,7 @@ class _$_AppExceptionErrorMessage implements _AppExceptionErrorMessage {
   TResult when<TResult extends Object?>({
     required TResult Function() connectivity,
     required TResult Function() unauthorized,
-    required TResult Function(dynamic message) errorWithMessage,
+    required TResult Function(String message) errorWithMessage,
     required TResult Function() error,
   }) {
     return errorWithMessage(message);
@@ -396,7 +395,7 @@ class _$_AppExceptionErrorMessage implements _AppExceptionErrorMessage {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? connectivity,
     TResult? Function()? unauthorized,
-    TResult? Function(dynamic message)? errorWithMessage,
+    TResult? Function(String message)? errorWithMessage,
     TResult? Function()? error,
   }) {
     return errorWithMessage?.call(message);
@@ -407,7 +406,7 @@ class _$_AppExceptionErrorMessage implements _AppExceptionErrorMessage {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? connectivity,
     TResult Function()? unauthorized,
-    TResult Function(dynamic message)? errorWithMessage,
+    TResult Function(String message)? errorWithMessage,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -456,10 +455,10 @@ class _$_AppExceptionErrorMessage implements _AppExceptionErrorMessage {
 }
 
 abstract class _AppExceptionErrorMessage implements AppException {
-  const factory _AppExceptionErrorMessage(final dynamic message) =
+  const factory _AppExceptionErrorMessage(final String message) =
       _$_AppExceptionErrorMessage;
 
-  dynamic get message;
+  String get message;
   @JsonKey(ignore: true)
   _$$_AppExceptionErrorMessageCopyWith<_$_AppExceptionErrorMessage>
       get copyWith => throw _privateConstructorUsedError;
@@ -505,7 +504,7 @@ class _$_AppExceptionError implements _AppExceptionError {
   TResult when<TResult extends Object?>({
     required TResult Function() connectivity,
     required TResult Function() unauthorized,
-    required TResult Function(dynamic message) errorWithMessage,
+    required TResult Function(String message) errorWithMessage,
     required TResult Function() error,
   }) {
     return error();
@@ -516,7 +515,7 @@ class _$_AppExceptionError implements _AppExceptionError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? connectivity,
     TResult? Function()? unauthorized,
-    TResult? Function(dynamic message)? errorWithMessage,
+    TResult? Function(String message)? errorWithMessage,
     TResult? Function()? error,
   }) {
     return error?.call();
@@ -527,7 +526,7 @@ class _$_AppExceptionError implements _AppExceptionError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? connectivity,
     TResult Function()? unauthorized,
-    TResult Function(dynamic message)? errorWithMessage,
+    TResult Function(String message)? errorWithMessage,
     TResult Function()? error,
     required TResult orElse(),
   }) {

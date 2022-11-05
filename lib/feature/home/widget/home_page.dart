@@ -21,7 +21,7 @@ class HomePage extends ConsumerWidget {
             icon: const Icon(Icons.adjust),
             onPressed: () async {
               await ref.read(authProvider.notifier).logOut();
-              context.router.replace(SignInRoute());
+              // context.router.replace(SignInRoute());
             },
           ),
         ],

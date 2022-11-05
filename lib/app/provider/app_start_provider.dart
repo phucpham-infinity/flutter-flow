@@ -1,9 +1,10 @@
-import 'package:flow_project/app/function/getMe.dart';
 import 'package:flow_project/app/state/app_start_state.dart';
 import 'package:flow_project/feature/auth/model/auth_state.dart';
 import 'package:flow_project/feature/auth/provider/auth_provider.dart';
 import 'package:flow_project/shared/http/api_provider.dart';
+import 'package:flow_project/shared/model/user/user.dart';
 import 'package:flow_project/shared/repository/token_repository.dart';
+import 'package:flow_project/shared/repository/user_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final appStartProvider =
@@ -14,8 +15,6 @@ final appStartProvider =
   appStartState = loginState is AppAuthenticated
       ? const AppStartState.authenticated()
       : const AppStartState.initial();
-
-  // appStartState = const AppStartState.authenticated();
 
   return AppStartNotifier(
     appStartState,
@@ -42,37 +41,54 @@ class AppStartNotifier extends StateNotifier<AppStartState> {
 
   void _init() async {
     _authState.maybeWhen(
-        loggedIn: () {
-          state = const AppStartState.authenticated();
-        },
-        orElse: () {});
-
-    // _homeState.maybeWhen(
-    //     loggedOut: () {
-    //       state = const AppStartState.unauthenticated();
-    //     },
-    //     orElse: () {});
+      loggedIn: () {
+        state = const AppStartState.authenticated();
+      },
+      loggedOut: () {
+        state = const AppStartState.unauthenticated('Logout!');
+      },
+      orElse: () {},
+    );
 
     final token = await _tokenRepository.fetchToken();
-    final user = await getMe(_api);
+    if (token == null) {
+      // if (mounted) {
+      //   state = const AppStartState.unauthenticated(
+      //       'Please login first to join the aplication.!');
+      // }
+      return;
+    }
+
+    final user = await _api.get('user');
 
     user.when(
-      success: (success) {
+      success: (success) async {
+        final UserRepository userRepository = _reader(userRepositoryProvider);
+
+        final user = User.fromJson(success);
+        await userRepository.saveUser(user);
         if (mounted) {
           state = const AppStartState.authenticated();
         }
       },
       error: (error) {
+        var _message = 'Something went wrong!';
         error.when(
-          connectivity: () {},
-          unauthorized: () {},
-          errorWithMessage: (message) {
-            print(message);
+          connectivity: () {
+            _message = 'app_start__connectivity: ${_message} ';
           },
-          error: () {},
+          unauthorized: () {
+            _message = 'app_start__unauthorized: ${_message} ';
+          },
+          errorWithMessage: (message) {
+            _message = message;
+          },
+          error: () {
+            _message = 'app_start__error: ${_message} ';
+          },
         );
         if (mounted) {
-          state = const AppStartState.unauthenticated();
+          state = AppStartState.unauthenticated(_message);
         }
       },
     );

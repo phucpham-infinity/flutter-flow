@@ -191,7 +191,7 @@ class ApiProvider {
     final _appToken = await _tokenRepository.fetchToken();
 
     if (_appToken != null) {
-      headers['Authorization'] = 'Bearer ${_appToken.access_token} 111';
+      headers['Authorization'] = 'Bearer ${_appToken.access_token}';
     }
 
     try {
@@ -208,7 +208,7 @@ class ApiProvider {
       }
 
       if (response.statusCode! < 300) {
-        return APIResponse.success(response.data['data']);
+        return APIResponse.success(response.data);
       } else {
         if (response.statusCode! == 404) {
           return const APIResponse.error(AppException.connectivity());
