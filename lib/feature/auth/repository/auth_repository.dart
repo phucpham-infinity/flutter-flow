@@ -12,7 +12,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 abstract class AuthRepositoryProtocol {
   Future<AuthState> login(String email, String password);
-  Future<AuthState> signUp(String name, String email, String password);
+  Future<AuthState> signUp(String email, String password);
   Future<AuthState> logOut();
 }
 
@@ -62,7 +62,7 @@ class AuthRepository implements AuthRepositoryProtocol {
   }
 
   @override
-  Future<AuthState> signUp(String name, String email, String password) async {
+  Future<AuthState> signUp(String email, String password) async {
     if (!Validator.isValidPassWord(password)) {
       return const AuthState.error(
           AppException.errorWithMessage('Minimum 8 characters required'));
@@ -72,7 +72,6 @@ class AuthRepository implements AuthRepositoryProtocol {
           AppException.errorWithMessage('Please enter a valid email address'));
     }
     final params = {
-      'name': name,
       'email': email,
       'password': password,
     };

@@ -16,8 +16,8 @@ class AuthProvider extends StateNotifier<AuthState> {
     state = await _loginRepository.login(email, password);
   }
 
-  Future<void> signUp(String name, String email, String password) async {
-    state = await _loginRepository.signUp(name, email, password);
+  Future<void> signUp(String email, String password) async {
+    state = await _loginRepository.signUp(email, password);
   }
 
   Future<void> logOut() async {

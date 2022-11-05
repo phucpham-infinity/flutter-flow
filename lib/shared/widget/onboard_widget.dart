@@ -1,7 +1,9 @@
 import 'package:flow_project/flutter_flow/flutter_flow_theme.dart';
 import 'package:flow_project/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flow_project/gen/assets.gen.dart';
+import 'package:flow_project/shared/routes/app_router.gr.dart';
 import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
 
 class OnboardWidget extends StatefulWidget {
   const OnboardWidget({Key? key}) : super(key: key);
@@ -42,7 +44,7 @@ class _SplashWidgetState extends State<OnboardWidget> {
                 ],
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
+                padding: const EdgeInsetsDirectional.fromSTEB(30, 0, 30, 30),
                 child: Text(
                   'The story\nbegins here.',
                   style: FlutterFlowTheme.of(context).bodyText1.override(
@@ -53,7 +55,7 @@ class _SplashWidgetState extends State<OnboardWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(30, 0, 30, 0),
                 child: Text(
                   'Unlimited stories in yours hand. Immerse yourself into amazing worlds and start your journey today.',
                   style: FlutterFlowTheme.of(context).bodyText1.override(
@@ -66,22 +68,22 @@ class _SplashWidgetState extends State<OnboardWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20, 60, 20, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(30, 60, 30, 0),
                 child: Container(
                   width: 100,
                   height: 60,
                   decoration: const BoxDecoration(
                     boxShadow: [
                       BoxShadow(
-                        blurRadius: 20,
+                        blurRadius: 30,
                         color: Color(0x33000000),
-                        offset: Offset(0, 20),
+                        offset: Offset(0, 30),
                       )
                     ],
                   ),
                   child: FFButtonWidget(
                     onPressed: () {
-                      print('Button pressed ...');
+                      context.router.push(SignInRoute());
                     },
                     text: 'Immerse yourself now',
                     options: FFButtonOptions(
@@ -97,7 +99,7 @@ class _SplashWidgetState extends State<OnboardWidget> {
                         color: Colors.transparent,
                         width: 1,
                       ),
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(30),
                     ),
                   ),
                 ),
@@ -113,7 +115,7 @@ class _SplashWidgetState extends State<OnboardWidget> {
                           const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                       child: InkWell(
                         onTap: () async {
-                          // context.pushNamed('Login');
+                          context.router.push(const SignUpRoute());
                         },
                         child: Text(
                           'Do you have an account?',
@@ -131,7 +133,7 @@ class _SplashWidgetState extends State<OnboardWidget> {
                     ),
                     InkWell(
                       onTap: () async {
-                        // context.pushNamed('Login');
+                        context.router.push(SignInRoute());
                       },
                       child: Text(
                         'Log in',
