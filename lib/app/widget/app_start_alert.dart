@@ -7,8 +7,11 @@ void AppStartAlert(BuildContext context, WidgetRef ref) {
   ref.listen(appStartProvider, (previous, next) {
     next.when(
       initial: () {},
-      unauthenticated: (message) =>
-          FlushbarError(context, message ?? 'Something error!'),
+      isOnboard: () {},
+      unauthenticated: (message) {
+        if (message == null) return;
+        FlushbarError(context, message);
+      },
       internetUnAvailable: () {},
       authenticated: () {},
     );

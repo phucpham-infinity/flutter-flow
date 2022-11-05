@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lottie/lottie.dart';
 
 class LoadingWidget extends ConsumerWidget {
   const LoadingWidget({Key? key}) : super(key: key);
@@ -12,9 +13,14 @@ class LoadingWidget extends ConsumerWidget {
   }
 
   Widget _widgetContent(BuildContext context, WidgetRef ref) {
-    return const SafeArea(
+    return SafeArea(
       child: Center(
-        child: Text('This is Loading'),
+        child: Lottie.network(
+          "https://assets1.lottiefiles.com/packages/lf20_0c8439m5.json",
+          width: 300,
+          height: 300,
+          fit: BoxFit.fill,
+        ),
       ),
     );
   }

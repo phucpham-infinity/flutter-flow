@@ -22,11 +22,14 @@ class $AssetsEnvGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/onboard.png
+  AssetGenImage get onboard => const AssetGenImage('assets/images/onboard.png');
+
   /// File path: assets/images/page_bg.png
   AssetGenImage get pageBg => const AssetGenImage('assets/images/page_bg.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [pageBg];
+  List<AssetGenImage> get values => [onboard, pageBg];
 }
 
 class $AssetsTranslationsGen {

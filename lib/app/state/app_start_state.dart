@@ -6,6 +6,8 @@ part 'app_start_state.freezed.dart';
 class AppStartState with _$AppStartState {
   const factory AppStartState.initial() = _Initial;
 
+  const factory AppStartState.isOnboard() = _IsOnboard;
+
   const factory AppStartState.unauthenticated(String? message) =
       _Unauthenticated;
 

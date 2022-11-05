@@ -3,6 +3,7 @@ import 'package:flow_project/feature/auth/model/auth_state.dart';
 import 'package:flow_project/feature/auth/provider/auth_provider.dart';
 import 'package:flow_project/shared/http/api_provider.dart';
 import 'package:flow_project/shared/model/user/user.dart';
+import 'package:flow_project/shared/repository/onboard_repository.dart';
 import 'package:flow_project/shared/repository/token_repository.dart';
 import 'package:flow_project/shared/repository/user_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -36,6 +37,9 @@ class AppStartNotifier extends StateNotifier<AppStartState> {
 
   late final ApiProvider _api = _reader(apiProvider);
 
+  late final OnboardRepository _onboardRepository =
+      _reader(onboardRepositoryProvider);
+
   final AuthState _authState;
   final Function _reader;
 
@@ -50,12 +54,21 @@ class AppStartNotifier extends StateNotifier<AppStartState> {
       orElse: () {},
     );
 
+    final _onBoard = await _onboardRepository.fetchOnboard();
+
+    if (_onBoard != null && _onBoard.is_onboard == 1 || _onBoard == null) {
+      if (mounted) {
+        state = const AppStartState.isOnboard();
+      }
+      return;
+    }
+
     final token = await _tokenRepository.fetchToken();
+
     if (token == null) {
-      // if (mounted) {
-      //   state = const AppStartState.unauthenticated(
-      //       'Please login first to join the aplication.!');
-      // }
+      if (mounted) {
+        state = const AppStartState.unauthenticated(null);
+      }
       return;
     }
 
