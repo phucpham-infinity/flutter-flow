@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flow_project/feature/auth/model/auth_state.dart';
 import 'package:flow_project/feature/auth/repository/auth_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,15 +14,28 @@ class AuthProvider extends StateNotifier<AuthState> {
   final Function _reader;
   late final AuthRepository _loginRepository = _reader(authRepositoryProvider);
 
-  Future<void> login(String email, String password) async {
+  Future<void> login(String? email, String? password) async {
     state = await _loginRepository.login(email, password);
   }
 
-  Future<void> signUp(String email, String password) async {
-    state = await _loginRepository.signUp(email, password);
+  Future<bool> signUp(
+      String? email, String? password, String? confirmPassword) async {
+    state = await _loginRepository.signUp(email, password, confirmPassword);
+    return state.maybeWhen(
+      orElse: () => true,
+      error: (error) => false,
+    );
   }
 
   Future<void> logOut() async {
     state = await _loginRepository.logOut();
+  }
+
+  Future<bool> forgotPassword(String? email) async {
+    state = await _loginRepository.forgetPassword(email);
+    return state.maybeWhen(
+      orElse: () => true,
+      error: (error) => false,
+    );
   }
 }

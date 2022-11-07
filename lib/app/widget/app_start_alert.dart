@@ -5,15 +5,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void AppStartAlert(BuildContext context, WidgetRef ref) {
   ref.listen(appStartProvider, (previous, next) {
-    next.when(
-      initial: () {},
-      isOnboard: () {},
+    next.maybeWhen(
       unauthenticated: (message) {
         if (message == null) return;
         FlushbarError(context, message);
       },
-      internetUnAvailable: () {},
-      authenticated: () {},
+      orElse: () {},
     );
   });
 }

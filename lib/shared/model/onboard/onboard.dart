@@ -12,8 +12,8 @@ String onboardToJson(Onboard data) => json.encode(data.toJson());
 class Onboard with _$Onboard {
   const factory Onboard({
     required int is_onboard,
-    required int steps,
-    required int current_step,
+    required int? steps,
+    required int? current_step,
   }) = _Onboard;
 
   factory Onboard.fromJson(Map<String, dynamic> json) =>

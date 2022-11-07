@@ -21,8 +21,8 @@ Onboard _$OnboardFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Onboard {
   int get is_onboard => throw _privateConstructorUsedError;
-  int get steps => throw _privateConstructorUsedError;
-  int get current_step => throw _privateConstructorUsedError;
+  int? get steps => throw _privateConstructorUsedError;
+  int? get current_step => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +34,7 @@ abstract class $OnboardCopyWith<$Res> {
   factory $OnboardCopyWith(Onboard value, $Res Function(Onboard) then) =
       _$OnboardCopyWithImpl<$Res, Onboard>;
   @useResult
-  $Res call({int is_onboard, int steps, int current_step});
+  $Res call({int is_onboard, int? steps, int? current_step});
 }
 
 /// @nodoc
@@ -51,22 +51,22 @@ class _$OnboardCopyWithImpl<$Res, $Val extends Onboard>
   @override
   $Res call({
     Object? is_onboard = null,
-    Object? steps = null,
-    Object? current_step = null,
+    Object? steps = freezed,
+    Object? current_step = freezed,
   }) {
     return _then(_value.copyWith(
       is_onboard: null == is_onboard
           ? _value.is_onboard
           : is_onboard // ignore: cast_nullable_to_non_nullable
               as int,
-      steps: null == steps
+      steps: freezed == steps
           ? _value.steps
           : steps // ignore: cast_nullable_to_non_nullable
-              as int,
-      current_step: null == current_step
+              as int?,
+      current_step: freezed == current_step
           ? _value.current_step
           : current_step // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ) as $Val);
   }
 }
@@ -78,7 +78,7 @@ abstract class _$$_OnboardCopyWith<$Res> implements $OnboardCopyWith<$Res> {
       __$$_OnboardCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int is_onboard, int steps, int current_step});
+  $Res call({int is_onboard, int? steps, int? current_step});
 }
 
 /// @nodoc
@@ -92,22 +92,22 @@ class __$$_OnboardCopyWithImpl<$Res>
   @override
   $Res call({
     Object? is_onboard = null,
-    Object? steps = null,
-    Object? current_step = null,
+    Object? steps = freezed,
+    Object? current_step = freezed,
   }) {
     return _then(_$_Onboard(
       is_onboard: null == is_onboard
           ? _value.is_onboard
           : is_onboard // ignore: cast_nullable_to_non_nullable
               as int,
-      steps: null == steps
+      steps: freezed == steps
           ? _value.steps
           : steps // ignore: cast_nullable_to_non_nullable
-              as int,
-      current_step: null == current_step
+              as int?,
+      current_step: freezed == current_step
           ? _value.current_step
           : current_step // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -126,9 +126,9 @@ class _$_Onboard implements _Onboard {
   @override
   final int is_onboard;
   @override
-  final int steps;
+  final int? steps;
   @override
-  final int current_step;
+  final int? current_step;
 
   @override
   String toString() {
@@ -168,17 +168,17 @@ class _$_Onboard implements _Onboard {
 abstract class _Onboard implements Onboard {
   const factory _Onboard(
       {required final int is_onboard,
-      required final int steps,
-      required final int current_step}) = _$_Onboard;
+      required final int? steps,
+      required final int? current_step}) = _$_Onboard;
 
   factory _Onboard.fromJson(Map<String, dynamic> json) = _$_Onboard.fromJson;
 
   @override
   int get is_onboard;
   @override
-  int get steps;
+  int? get steps;
   @override
-  int get current_step;
+  int? get current_step;
   @override
   @JsonKey(ignore: true)
   _$$_OnboardCopyWith<_$_Onboard> get copyWith =>

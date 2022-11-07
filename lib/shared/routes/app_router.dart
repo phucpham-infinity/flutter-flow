@@ -17,6 +17,8 @@ class AppRouteObserver extends AutoRouterObserver {
     homeRouter,
     signInRouter,
     signUpRouter,
+    forgotPasswordRouter,
+    resetPasswordRouter,
   ],
 )
 class $AppRouter {}

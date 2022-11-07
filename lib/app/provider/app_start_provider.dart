@@ -1,5 +1,4 @@
 import 'package:flow_project/app/state/app_start_state.dart';
-import 'package:flow_project/feature/auth/model/auth_state.dart';
 import 'package:flow_project/feature/auth/provider/auth_provider.dart';
 import 'package:flow_project/shared/http/api_provider.dart';
 import 'package:flow_project/shared/model/user/user.dart';
@@ -11,16 +10,26 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 final appStartProvider =
     StateNotifierProvider<AppStartNotifier, AppStartState>((ref) {
   late AppStartState appStartState;
-  final loginState = ref.watch(authProvider);
+  final authState = ref.watch(authProvider);
 
-  appStartState = loginState is AppAuthenticated
-      ? const AppStartState.authenticated()
-      : const AppStartState.initial();
+  authState.maybeWhen(
+    loggedIn: () {
+      appStartState = const AppStartState.authenticated();
+    },
+    signUp: () {
+      appStartState = const AppStartState.internetUnAvailable();
+    },
+    error: (error) {
+      appStartState = const AppStartState.internetUnAvailable();
+    },
+    orElse: () {
+      appStartState = const AppStartState.initial();
+    },
+  );
 
   return AppStartNotifier(
     appStartState,
     ref.read,
-    loginState,
   );
 });
 
@@ -28,7 +37,7 @@ class AppStartNotifier extends StateNotifier<AppStartState> {
   AppStartNotifier(
     AppStartState appStartState,
     this._reader,
-    this._authState,
+    // this._authState,
   ) : super(appStartState) {
     _init();
   }
@@ -40,19 +49,13 @@ class AppStartNotifier extends StateNotifier<AppStartState> {
   late final OnboardRepository _onboardRepository =
       _reader(onboardRepositoryProvider);
 
-  final AuthState _authState;
+  // final AuthState _authState;
   final Function _reader;
 
   void _init() async {
-    _authState.maybeWhen(
-      loggedIn: () {
-        state = const AppStartState.authenticated();
-      },
-      loggedOut: () {
-        state = const AppStartState.unauthenticated('Logout!');
-      },
-      orElse: () {},
-    );
+    if (state == const AppStartState.internetUnAvailable()) {
+      return;
+    }
 
     final _onBoard = await _onboardRepository.fetchOnboard();
 
@@ -77,7 +80,6 @@ class AppStartNotifier extends StateNotifier<AppStartState> {
     user.when(
       success: (success) async {
         final UserRepository userRepository = _reader(userRepositoryProvider);
-
         final user = User.fromJson(success);
         await userRepository.saveUser(user);
         if (mounted) {

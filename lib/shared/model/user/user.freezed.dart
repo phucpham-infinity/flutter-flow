@@ -24,11 +24,11 @@ mixin _$User {
   String get aud => throw _privateConstructorUsedError;
   String get role => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
-  DateTime get email_confirmed_at => throw _privateConstructorUsedError;
+  DateTime? get email_confirmed_at => throw _privateConstructorUsedError;
   String? get phone => throw _privateConstructorUsedError;
-  DateTime get confirmation_sent_at => throw _privateConstructorUsedError;
-  DateTime get confirmed_at => throw _privateConstructorUsedError;
-  DateTime get last_sign_in_at => throw _privateConstructorUsedError;
+  DateTime? get confirmation_sent_at => throw _privateConstructorUsedError;
+  DateTime? get confirmed_at => throw _privateConstructorUsedError;
+  DateTime? get last_sign_in_at => throw _privateConstructorUsedError;
   DateTime get created_at => throw _privateConstructorUsedError;
   DateTime get updated_at => throw _privateConstructorUsedError;
 
@@ -47,11 +47,11 @@ abstract class $UserCopyWith<$Res> {
       String aud,
       String role,
       String email,
-      DateTime email_confirmed_at,
+      DateTime? email_confirmed_at,
       String? phone,
-      DateTime confirmation_sent_at,
-      DateTime confirmed_at,
-      DateTime last_sign_in_at,
+      DateTime? confirmation_sent_at,
+      DateTime? confirmed_at,
+      DateTime? last_sign_in_at,
       DateTime created_at,
       DateTime updated_at});
 }
@@ -73,11 +73,11 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? aud = null,
     Object? role = null,
     Object? email = null,
-    Object? email_confirmed_at = null,
+    Object? email_confirmed_at = freezed,
     Object? phone = freezed,
-    Object? confirmation_sent_at = null,
-    Object? confirmed_at = null,
-    Object? last_sign_in_at = null,
+    Object? confirmation_sent_at = freezed,
+    Object? confirmed_at = freezed,
+    Object? last_sign_in_at = freezed,
     Object? created_at = null,
     Object? updated_at = null,
   }) {
@@ -98,26 +98,26 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      email_confirmed_at: null == email_confirmed_at
+      email_confirmed_at: freezed == email_confirmed_at
           ? _value.email_confirmed_at
           : email_confirmed_at // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       phone: freezed == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
-      confirmation_sent_at: null == confirmation_sent_at
+      confirmation_sent_at: freezed == confirmation_sent_at
           ? _value.confirmation_sent_at
           : confirmation_sent_at // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      confirmed_at: null == confirmed_at
+              as DateTime?,
+      confirmed_at: freezed == confirmed_at
           ? _value.confirmed_at
           : confirmed_at // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      last_sign_in_at: null == last_sign_in_at
+              as DateTime?,
+      last_sign_in_at: freezed == last_sign_in_at
           ? _value.last_sign_in_at
           : last_sign_in_at // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       created_at: null == created_at
           ? _value.created_at
           : created_at // ignore: cast_nullable_to_non_nullable
@@ -141,11 +141,11 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String aud,
       String role,
       String email,
-      DateTime email_confirmed_at,
+      DateTime? email_confirmed_at,
       String? phone,
-      DateTime confirmation_sent_at,
-      DateTime confirmed_at,
-      DateTime last_sign_in_at,
+      DateTime? confirmation_sent_at,
+      DateTime? confirmed_at,
+      DateTime? last_sign_in_at,
       DateTime created_at,
       DateTime updated_at});
 }
@@ -163,11 +163,11 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
     Object? aud = null,
     Object? role = null,
     Object? email = null,
-    Object? email_confirmed_at = null,
+    Object? email_confirmed_at = freezed,
     Object? phone = freezed,
-    Object? confirmation_sent_at = null,
-    Object? confirmed_at = null,
-    Object? last_sign_in_at = null,
+    Object? confirmation_sent_at = freezed,
+    Object? confirmed_at = freezed,
+    Object? last_sign_in_at = freezed,
     Object? created_at = null,
     Object? updated_at = null,
   }) {
@@ -188,26 +188,26 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      email_confirmed_at: null == email_confirmed_at
+      email_confirmed_at: freezed == email_confirmed_at
           ? _value.email_confirmed_at
           : email_confirmed_at // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       phone: freezed == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
-      confirmation_sent_at: null == confirmation_sent_at
+      confirmation_sent_at: freezed == confirmation_sent_at
           ? _value.confirmation_sent_at
           : confirmation_sent_at // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      confirmed_at: null == confirmed_at
+              as DateTime?,
+      confirmed_at: freezed == confirmed_at
           ? _value.confirmed_at
           : confirmed_at // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      last_sign_in_at: null == last_sign_in_at
+              as DateTime?,
+      last_sign_in_at: freezed == last_sign_in_at
           ? _value.last_sign_in_at
           : last_sign_in_at // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       created_at: null == created_at
           ? _value.created_at
           : created_at // ignore: cast_nullable_to_non_nullable
@@ -247,15 +247,15 @@ class _$_User implements _User {
   @override
   final String email;
   @override
-  final DateTime email_confirmed_at;
+  final DateTime? email_confirmed_at;
   @override
   final String? phone;
   @override
-  final DateTime confirmation_sent_at;
+  final DateTime? confirmation_sent_at;
   @override
-  final DateTime confirmed_at;
+  final DateTime? confirmed_at;
   @override
-  final DateTime last_sign_in_at;
+  final DateTime? last_sign_in_at;
   @override
   final DateTime created_at;
   @override
@@ -326,11 +326,11 @@ abstract class _User implements User {
       required final String aud,
       required final String role,
       required final String email,
-      required final DateTime email_confirmed_at,
+      required final DateTime? email_confirmed_at,
       required final String? phone,
-      required final DateTime confirmation_sent_at,
-      required final DateTime confirmed_at,
-      required final DateTime last_sign_in_at,
+      required final DateTime? confirmation_sent_at,
+      required final DateTime? confirmed_at,
+      required final DateTime? last_sign_in_at,
       required final DateTime created_at,
       required final DateTime updated_at}) = _$_User;
 
@@ -345,15 +345,15 @@ abstract class _User implements User {
   @override
   String get email;
   @override
-  DateTime get email_confirmed_at;
+  DateTime? get email_confirmed_at;
   @override
   String? get phone;
   @override
-  DateTime get confirmation_sent_at;
+  DateTime? get confirmation_sent_at;
   @override
-  DateTime get confirmed_at;
+  DateTime? get confirmed_at;
   @override
-  DateTime get last_sign_in_at;
+  DateTime? get last_sign_in_at;
   @override
   DateTime get created_at;
   @override

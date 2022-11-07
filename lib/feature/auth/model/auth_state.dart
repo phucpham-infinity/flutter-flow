@@ -9,5 +9,7 @@ class AuthState with _$AuthState {
   const factory AuthState.loading() = _Loading;
   const factory AuthState.loggedIn() = _LoggedIn;
   const factory AuthState.loggedOut() = _LoggedOut;
+  const factory AuthState.signUp() = _SignUp;
+  const factory AuthState.forgotPassword() = _ForgotPassword;
   const factory AuthState.error(AppException error) = _Error;
 }

@@ -1,19 +1,30 @@
 import 'package:flow_project/flutter_flow/flutter_flow_theme.dart';
 import 'package:flow_project/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flow_project/gen/assets.gen.dart';
+import 'package:flow_project/shared/model/onboard/onboard.dart';
+import 'package:flow_project/shared/repository/onboard_repository.dart';
 import 'package:flow_project/shared/routes/app_router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class OnboardWidget extends StatefulWidget {
+class OnboardWidget extends ConsumerStatefulWidget {
   const OnboardWidget({Key? key}) : super(key: key);
 
   @override
   _SplashWidgetState createState() => _SplashWidgetState();
 }
 
-class _SplashWidgetState extends State<OnboardWidget> {
+class _SplashWidgetState extends ConsumerState<OnboardWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  late final OnboardRepository _onboardRepository =
+      ref.read(onboardRepositoryProvider);
+
+  void checkOnboard() async {
+    const _onboard = Onboard(is_onboard: 0, steps: 0, current_step: 0);
+    await _onboardRepository.saveOnboard(_onboard);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +46,8 @@ class _SplashWidgetState extends State<OnboardWidget> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Assets.images.onboard.image(
-                        width: 350,
-                        height: 350,
+                        width: 250,
+                        height: 250,
                         fit: BoxFit.cover,
                       ),
                     ],
@@ -83,6 +94,7 @@ class _SplashWidgetState extends State<OnboardWidget> {
                   ),
                   child: FFButtonWidget(
                     onPressed: () {
+                      checkOnboard();
                       context.router.push(SignInRoute());
                     },
                     text: 'Immerse yourself now',
@@ -115,6 +127,7 @@ class _SplashWidgetState extends State<OnboardWidget> {
                           const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                       child: InkWell(
                         onTap: () async {
+                          checkOnboard();
                           context.router.push(const SignUpRoute());
                         },
                         child: Text(
@@ -133,6 +146,7 @@ class _SplashWidgetState extends State<OnboardWidget> {
                     ),
                     InkWell(
                       onTap: () async {
+                        checkOnboard();
                         context.router.push(SignInRoute());
                       },
                       child: Text(

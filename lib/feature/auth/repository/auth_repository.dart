@@ -12,8 +12,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 abstract class AuthRepositoryProtocol {
   Future<AuthState> login(String email, String password);
-  Future<AuthState> signUp(String email, String password);
+  Future<AuthState> signUp(
+      String? email, String? password, String confirmPassword);
   Future<AuthState> logOut();
+  Future<AuthState> forgetPassword(String? email);
 }
 
 final authRepositoryProvider = Provider((ref) => AuthRepository(ref.read));
@@ -25,7 +27,7 @@ class AuthRepository implements AuthRepositoryProtocol {
   final Function _reader;
 
   @override
-  Future<AuthState> login(String email, String password) async {
+  Future<AuthState> login(String? email, String? password) async {
     if (!Validator.isValidPassWord(password)) {
       return const AuthState.error(
           AppException.errorWithMessage('Minimum 8 characters required'));
@@ -62,32 +64,42 @@ class AuthRepository implements AuthRepositoryProtocol {
   }
 
   @override
-  Future<AuthState> signUp(String email, String password) async {
+  Future<AuthState> signUp(
+      String? email, String? password, String? confirmPassword) async {
     if (!Validator.isValidPassWord(password)) {
-      return const AuthState.error(
-          AppException.errorWithMessage('Minimum 8 characters required'));
+      return AuthState.error(
+        AppException.errorWithMessage(
+            'Password: ${password} -  Minimum 8 characters required'),
+      );
     }
     if (!Validator.isValidEmail(email)) {
-      return const AuthState.error(
-          AppException.errorWithMessage('Please enter a valid email address'));
+      return AuthState.error(
+        AppException.errorWithMessage(
+            'Email: ${email} - Please enter a valid email address'),
+      );
+    }
+
+    if (confirmPassword != password) {
+      return AuthState.error(
+        AppException.errorWithMessage(
+            'Confirm Password: The password confirm ${confirmPassword} does not match ${password}'),
+      );
     }
     final params = {
       'email': email,
       'password': password,
     };
-    final loginResponse = await _api.post('sign_up', jsonEncode(params));
+    final signupResponse = await _api.post('signup', jsonEncode(params));
 
-    return loginResponse.when(success: (success) async {
-      final TokenRepository tokenRepository = _reader(tokenRepositoryProvider);
-
-      final token = Token.fromJson(success);
-
-      await tokenRepository.saveToken(token);
-
-      return const AuthState.loggedIn();
-    }, error: (error) {
-      return AuthState.error(error);
-    });
+    return signupResponse.when(
+      success: (success) async {
+        // final user = User.fromJson(success);
+        return const AuthState.signUp();
+      },
+      error: (error) {
+        return AuthState.error(error);
+      },
+    );
   }
 
   @override
@@ -98,5 +110,34 @@ class AuthRepository implements AuthRepositoryProtocol {
     await tokenRepository.remove();
     await userRepository.remove();
     return const AuthState.loggedOut();
+  }
+
+  @override
+  Future<AuthState> forgetPassword(String? email) async {
+    print(email);
+
+    if (!Validator.isValidEmail(email)) {
+      return AuthState.error(
+        AppException.errorWithMessage(
+            'Email: ${email} - Please enter a valid email address'),
+      );
+    }
+
+    final params = {
+      'email': email,
+    };
+
+    final forgetPasswordResponse =
+        await _api.post('recover', jsonEncode(params));
+
+    return forgetPasswordResponse.when(
+      success: (success) async {
+        // final user = User.fromJson(success);
+        return AuthState.forgotPassword();
+      },
+      error: (error) {
+        return AuthState.error(error);
+      },
+    );
   }
 }

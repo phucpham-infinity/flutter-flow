@@ -14,6 +14,7 @@ class AppStartPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(appStartProvider);
+    print(state);
 
     AppStartAlert(context, ref);
 
@@ -21,7 +22,7 @@ class AppStartPage extends ConsumerWidget {
       isOnboard: () => const OnboardWidget(),
       initial: () => const LoadingWidget(),
       authenticated: () => const HomePage(),
-      unauthenticated: (message) => SignInPage(),
+      unauthenticated: (message) => const SignInPage(),
       internetUnAvailable: () => const ConnectionUnavailableWidget(),
       orElse: () => const LoadingWidget(),
     );
